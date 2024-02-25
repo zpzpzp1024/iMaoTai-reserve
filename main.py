@@ -1,7 +1,8 @@
 import datetime
 import logging
 import sys
-
+from time import sleep
+import random
 import config
 import login
 import process
@@ -71,6 +72,8 @@ for section in configs.sections():
             reservation_params = process.act_params(max_shop_id, item)
             # 核心预约步骤
             r_success, r_content = process.reservation(reservation_params, mobile)
+            sleep_time = random.random() * 5  # 生成一个0到10之间的随机浮点数
+            sleep(sleep_time)    
             # 为了防止漏掉推送异常，所有只要有一个异常，标题就显示失败
             if not r_success:
                 s_title = 'GithubAction！！失败！！茅台预约'
