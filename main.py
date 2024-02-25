@@ -32,7 +32,7 @@ if len(configs.sections()) == 0:
 
 aes_key = privateCrypt.get_aes_key()
 
-s_title = '茅台预约成功'
+s_title = 'GithubAction茅台预约成功'
 s_content = ""
 
 for section in configs.sections():
@@ -73,13 +73,13 @@ for section in configs.sections():
             r_success, r_content = process.reservation(reservation_params, mobile)
             # 为了防止漏掉推送异常，所有只要有一个异常，标题就显示失败
             if not r_success:
-                s_title = '！！失败！！茅台预约'
-            s_content = s_content + r_content + shopInfo + "\n"
+                s_title = 'GithubAction！！失败！！茅台预约'
+            #s_content = s_content + r_content + shopInfo + "\n"
             # 领取小茅运和耐力值
             process.getUserEnergyAward(mobile)
     except BaseException as e:
         print(e)
         logging.error(e)
-
+    s_content="githubAction运行成功"
 # 推送消息
 process.send_msg(s_title, s_content)
